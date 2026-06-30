@@ -873,6 +873,8 @@
     @media (max-width: 900px) {
       .nav-links { display: none; }
       .hamburger { display: flex; }
+      .theme-btn { display: none; }
+      .nav-cta-desktop { display: none; }
       .hero-grid { grid-template-columns: 1fr; gap: 48px; }
       .hero-visual { display: none; }
       .hero { padding: 120px 0 80px; }
@@ -924,7 +926,7 @@
         <button class="hamburger" onclick="toggleMenu()" aria-label="Menú">
           <span></span><span></span><span></span>
         </button>
-        <a href="https://horus-web-psi.vercel.app" target="_blank" rel="noopener" class="btn btn-primary" style="padding:10px 20px;font-size:0.82rem;">Pedir mi brazalete</a>
+        <a href="https://horus-web-psi.vercel.app" target="_blank" rel="noopener" class="btn btn-primary nav-cta-desktop" style="padding:10px 20px;font-size:0.82rem;">Pedir producto</a>
       </div>
     </div>
   </nav>
@@ -938,7 +940,12 @@
     <a href="#ecosistema" onclick="toggleMenu()">Ecosistema</a>
     <a href="#como-funciona" onclick="toggleMenu()">Cómo funciona</a>
     <a href="#planes" onclick="toggleMenu()">Planes</a>
-    <a href="https://horus-web-psi.vercel.app" target="_blank" rel="noopener" class="btn btn-red" style="margin-top:20px;justify-content:center;" onclick="toggleMenu()">Pedir mi brazalete</a>
+    <a href="https://horus-web-psi.vercel.app" target="_blank" rel="noopener" class="btn btn-red" style="margin-top:20px;justify-content:center;" onclick="toggleMenu()">Pedir producto</a>
+    <button onclick="toggleTheme()" style="display:flex;align-items:center;gap:10px;padding:14px 0;border-bottom:1px solid var(--border);font-family:'Space Grotesk',sans-serif;font-size:1rem;font-weight:600;color:var(--text-sub);background:none;border-top:none;border-left:none;border-right:none;cursor:pointer;width:100%;margin-top:4px;">
+      <svg id="icon-moon-m" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg id="icon-sun-m" style="display:none" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      <span id="theme-label-m">Modo oscuro</span>
+    </button>
   </div>
 
   <!-- ══ HERO ══ -->
@@ -1533,10 +1540,13 @@
     /* ── THEME ── */
     function applyTheme(dark) {
       document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
-      document.getElementById('icon-moon').style.display  = dark ? 'none'  : 'block';
-      document.getElementById('icon-sun').style.display   = dark ? 'block' : 'none';
-      document.getElementById('logo-light').style.display = dark ? 'none'  : 'block';
-      document.getElementById('logo-dark').style.display  = dark ? 'block' : 'none';
+      document.getElementById('icon-moon').style.display   = dark ? 'none'  : 'block';
+      document.getElementById('icon-sun').style.display    = dark ? 'block' : 'none';
+      document.getElementById('icon-moon-m').style.display = dark ? 'none'  : 'block';
+      document.getElementById('icon-sun-m').style.display  = dark ? 'block' : 'none';
+      document.getElementById('theme-label-m').textContent = dark ? 'Modo claro' : 'Modo oscuro';
+      document.getElementById('logo-light').style.display  = dark ? 'none'  : 'block';
+      document.getElementById('logo-dark').style.display   = dark ? 'block' : 'none';
       document.querySelectorAll('.footer-logo-light').forEach(el => el.style.display = dark ? 'none'  : 'block');
       document.querySelectorAll('.footer-logo-dark').forEach(el  => el.style.display = dark ? 'block' : 'none');
     }
